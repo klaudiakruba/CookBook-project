@@ -1,2 +1,6 @@
-@import "../core/reset" @import "./media";
-@import "./mixins" @import "./variables" @import "../elements/buttons";
+@import "../core/reset";
+@import "./media";
+@import "./mixins";
+@import "./variables";
+@import "../elements/buttons";
+@import "../elements/navigation";
