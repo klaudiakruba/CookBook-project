@@ -10,7 +10,6 @@ body {
 	border: 2px solid blue;
 	display: flex;
 	box-sizing: border-box;
-	padding-left: 0.4rem;
 }
 
 /*****FIRST PAGE*****/
@@ -31,20 +30,31 @@ nav {
 
 //main section
 .first-page__main {
-	img {
-		position: absolute;
-
-		z-index: -1;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100;
-	}
+	// padding-left: 0.4rem;
 	display: flex;
-	width: 100%;
-	height: 100%;
+	width: 100vw;
+	height: 50%;
 	padding-bottom: 1rem;
 	align-items: center;
+
+	img {
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		left: -5rem;
+		width: auto;
+		height: 60%;
+	}
+
+	.main {
+		position: absolute;
+		bottom: 0;
+		background-color: $third-color;
+		height: 50%;
+		width: 100vw;
+		border: 1px solid $third-color;
+		border-top-left-radius: 3px;
+	}
 	.first-page__text {
 		font-family: $font-title;
 		color: $font-color-basic;

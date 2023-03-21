@@ -5,10 +5,12 @@ const FirstPageMain = () => {
 	return (
 		<section className="first-page__main">
 			<img src={cookbook} className="main_img" alt="CookBook"></img>
-			<p className="first-page__text">
-				Witaj
-				<br />w C<strong className="special_text">o</strong>okBook
-			</p>
+			<div className="main">
+				<p className="first-page__text">
+					Witaj
+					<br />w C<strong className="special_text">o</strong>okBook
+				</p>
+			</div>
 		</section>
 	);
 };
