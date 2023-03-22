@@ -1,16 +1,21 @@
 import { useState } from "react";
-// import reactLogo from "./assets/react.svg";
-// import viteLogo from "/vite.svg";
+import MainView from "./MainView";
 import "./App.css";
-
-import Navigation from "./Navigation";
-import FirstPageMain from "./Main_view";
+import {
+	HashRouter,
+	Route,
+	Routes,
+	Link,
+	NavLink,
+	Outlet,
+} from "react-router-dom";
 const App = () => {
 	return (
-		<>
-			<Navigation />
-			<FirstPageMain />
-		</>
+		<HashRouter>
+			<Routes>
+				<Route path="/" element={<MainView />} />
+			</Routes>
+		</HashRouter>
 	);
 };
 
