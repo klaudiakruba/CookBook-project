@@ -88,12 +88,12 @@ nav {
 			display: flex;
 			flex-direction: column;
 			gap: 0.3rem;
-			.log_text {
-				font-weight: bolder;
-				font-family: $font-text;
-				font-size: 1.4rem;
-				color: $font-color-basic;
-			}
+		}
+		.log_text {
+			font-weight: bolder;
+			font-family: $font-text;
+			font-size: 1.4rem;
+			color: $font-color-basic;
 		}
 	}
 	.btn {
@@ -119,6 +119,24 @@ nav {
 			border: none;
 			box-shadow: none;
 			align-self: center;
+		}
+	}
+
+	// register view
+	.reg_container {
+		width: 100vw;
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		.reg-text {
+			border: 2px solid $font-color-basic;
+		}
+		form.reg_form {
+			display: flex;
+			flex-direction: column;
 		}
 	}
 }

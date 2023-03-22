@@ -10,7 +10,6 @@ const MainView = () => {
 	};
 	return (
 		<div className="first_view">
-			<Navigation />
 			<section className="first-page__main">
 				<img src={cookbook} className="main_img" alt="CookBook"></img>
 				<div className="main">
