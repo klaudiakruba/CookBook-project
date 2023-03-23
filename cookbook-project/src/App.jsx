@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navigation from "./Navigation";
 import MainView from "./MainView";
 import Reg from "./Register_view";
+import LoggedView from "./LoggedView";
 import "./App.css";
 import {
 	HashRouter,
@@ -19,7 +20,8 @@ const App = () => {
 			<Routes>
 				{/* <Route path="/" element={<Navigation />} /> */}
 				{/* <Route path="/" element={<MainView />} /> */}
-				<Route path="/" element={<Reg />} />
+				{/* <Route path="/" element={<Reg />} /> */}
+				<Route path="/" element={<LoggedView />} />
 			</Routes>
 		</HashRouter>
 	);

@@ -15,7 +15,7 @@ body {
 
 //navigation section
 .first_view {
-	background-color: adjust-color($third-color, $lightness: 12%);
+	background-color: $third-color;
 	display: flex;
 	flex-direction: column;
 	z-index: -1;
@@ -63,9 +63,6 @@ nav {
 		color: $font-color-basic;
 		font-size: 5rem;
 		line-height: 7rem;
-		.special_text {
-			color: $font-color-secondary;
-		}
 	}
 	form {
 		display: flex;
@@ -89,17 +86,11 @@ nav {
 			flex-direction: column;
 			gap: 0.3rem;
 		}
-		.log_text {
-			font-weight: bolder;
-			font-family: $font-text;
-			font-size: 1.4rem;
-			color: $font-color-basic;
-		}
 	}
 	.btn {
 		margin-top: 1rem;
 		background-color: $font-color-basic;
-		color: adjust-color($third-color, $lightness: 12%);
+		color: $third-color;
 		font-family: $font-text;
 		border-radius: 1.9rem;
 		font-weight: bold;
@@ -109,9 +100,7 @@ nav {
 		cursor: pointer;
 		box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.2);
 	}
-	.btn:hover {
-		opacity: 0.6;
-	}
+
 	button.btn {
 		&.btn_register {
 			background-color: transparent;
@@ -121,22 +110,96 @@ nav {
 			align-self: center;
 		}
 	}
+}
+.log_text {
+	font-weight: bold;
+	font-family: $font-text;
+	font-size: 1.4rem;
+	color: $font-color-basic;
+}
+.btn {
+	margin-top: 1rem;
+	background-color: $font-color-basic;
+	color: $third-color;
+	font-family: $font-text;
+	border-radius: 1.9rem;
+	font-weight: bold;
+	font-size: 1.5rem;
+	width: 15rem;
+	height: 4rem;
+	cursor: pointer;
+	box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.2);
+}
+.btn:hover {
+	opacity: 0.6;
+}
+/******* REGISTRATION PAGE ******/
 
-	// register view
-	.reg_container {
-		width: 100vw;
-		height: 100vh;
+// register view
+.reg_container {
+	width: auto;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: $third-color;
+	padding: 2rem;
+
+	.reg_text {
+		font-size: 2rem;
+		color: $font-color-basic;
+		border: 2px solid $font-color-basic;
+		line-height: 4rem;
+		padding: 2rem;
+		border-radius: 5rem;
+		text-align: justify;
+		text-align-last: center;
+
+		.special_text {
+			font-weight: bold;
+		}
+	}
+	form.reg_form {
+		padding-top: 6rem;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-
-		.reg-text {
-			border: 2px solid $font-color-basic;
+		gap: 2rem;
+		input {
+			margin-left: 0.5rem;
+			padding: 0.8rem;
 		}
-		form.reg_form {
-			display: flex;
-			flex-direction: column;
+
+		button {
+			margin-top: 5rem;
+			align-self: center;
+			width: 25rem;
+		}
+	}
+}
+
+/******** LOGGED VIEW *********/
+.logged_view {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	background-color: cornflowerblue;
+	.recipe_cathegory {
+	}
+	form.add_cath_form {
+		display: flex;
+		flex-direction: column;
+
+		input,
+		button {
+			align-self: center;
+			width: 60vw;
+			height: 5rem;
+		}
+		input {
+			height: 3rem;
 		}
 	}
 }
