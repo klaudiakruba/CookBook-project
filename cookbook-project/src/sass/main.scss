@@ -4,7 +4,7 @@ html {
 	font-size: 62.5%;
 }
 body {
-	background-color: $first-color;
+	background-color: $third-color;
 	width: 100vw;
 	height: 100vh;
 	display: flex;
@@ -15,22 +15,20 @@ body {
 
 //navigation section
 .first_view {
-	background-color: $third-color;
 	display: flex;
 	flex-direction: column;
-	z-index: -1;
+	// z-index: -1;
 }
 nav {
 	display: flex;
 	align-items: center;
 	height: 5vh;
 	width: 100vw;
+	background-color: darken($third-color, 6%);
 
-	border-bottom-left-radius: 1rem;
-	border-bottom-right-radius: 1rem;
 	.logo {
 		font-family: $font-title;
-		font-size: 1rem;
+		font-size: 1.5rem;
 		color: $font-color-basic;
 	}
 }
@@ -69,7 +67,7 @@ nav {
 		flex-direction: column;
 		align-items: center;
 
-		input {
+		.input_style {
 			border: transparent;
 			width: 20rem;
 			height: 2.5rem;
@@ -101,13 +99,15 @@ nav {
 		box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.2);
 	}
 
-	button.btn {
+	.btn {
 		&.btn_register {
 			background-color: transparent;
 			color: $font-color-basic;
 			border: none;
 			box-shadow: none;
 			align-self: center;
+			text-decoration: none;
+			padding-left: 3.5rem;
 		}
 	}
 }
@@ -132,6 +132,17 @@ nav {
 }
 .btn:hover {
 	opacity: 0.6;
+}
+
+.appear {
+	font-size: 1.5rem;
+	color: red;
+	display: flex;
+	justify-content: center;
+}
+
+.disappear {
+	display: none;
 }
 /******* REGISTRATION PAGE ******/
 
