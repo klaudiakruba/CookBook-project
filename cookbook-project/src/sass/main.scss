@@ -190,6 +190,21 @@ nav {
 }
 
 /******** LOGGED VIEW *********/
+.log_view {
+	display: flex;
+
+	justify-content: flex-end;
+	.name {
+		font-family: $font-text;
+		font-size: 2rem;
+		font-weight: bold;
+		color: $font-color-basic;
+		padding-right: 2rem;
+		align-items: flex-end;
+	}
+	.login_img {
+	}
+}
 .logged_view {
 	display: flex;
 	flex-direction: column;

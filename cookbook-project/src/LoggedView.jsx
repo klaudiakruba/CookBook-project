@@ -10,7 +10,7 @@ const LoggedView = () => {
 	};
 	return (
 		<section>
-			<div class="login_view">
+			<div class="log_view">
 				<span className="name">Imię</span>
 				<div className="login_img"></div>
 			</div>
