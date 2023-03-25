@@ -192,7 +192,6 @@ nav {
 /******** LOGGED VIEW *********/
 .log_view {
 	display: flex;
-
 	justify-content: flex-end;
 	.name {
 		font-family: $font-text;
@@ -212,20 +211,39 @@ nav {
 	width: 100vw;
 	height: 100vh;
 	background-color: cornflowerblue;
+
 	.recipe_cathegory {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		font-family: $font-text;
+		font-size: 2rem;
+		background-color: darken($third-color, 10%);
+		width: 60vw;
+		margin: 2rem;
+		.cathegory {
+			border-bottom: 2px solid $font-color-secondary;
+			width: 60vw;
+		}
 	}
 	form.add_cath_form {
+		font-size: 2rem;
 		display: flex;
 		flex-direction: column;
 
 		input,
 		button {
+			font-family: $font-text;
 			align-self: center;
 			width: 60vw;
 			height: 5rem;
+			font-size: 2rem;
 		}
 		input {
+			margin-bottom: 1.6rem;
 			height: 3rem;
+			width: 59vw;
+			padding: 0;
 		}
 	}
 }

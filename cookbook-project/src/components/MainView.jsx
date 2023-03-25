@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import cookbook from "./assets/cookbook.jpg";
+import cookbook from "../assets/cookbook.jpg";
 import { Link } from "react-router-dom";
 import LoggedView from "./LoggedView";
-const MainView = () => {
+const MainView = ({ isLogged, setIsLogged }) => {
 	//state need to correct work
 	const [login, setLogin] = useState(""); //false jesli baza danych
 	const [password, setPassword] = useState(""); //false jesli baza danych
-	const [isLogged, setIsLogged] = useState(false);
 	const [errorMessage, setErrorMessage] = useState("");
 	//Submit handle function
 	const handleSubmit = (e) => {
