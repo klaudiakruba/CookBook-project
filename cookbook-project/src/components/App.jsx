@@ -2,6 +2,8 @@ import Navigation from "./Navigation";
 import MainView from "./MainView";
 import Reg from "./Register_view";
 import LoggedView from "./LoggedView";
+import RecipesInCathegory from "./RecipesInCathegory";
+import AddRecipe from "./AddRecipe";
 import "./App.css";
 import { useState } from "react";
 import {
@@ -18,15 +20,22 @@ const App = () => {
 
 	return (
 		<HashRouter>
+			<Navigation isLogged={isLogged} setIsLogged={setIsLogged} />
 			<Routes>
 				<Route
 					path="/"
-					element={<MainView isLogged={isLogged} setIsLogged={setIsLogged} />}
+					element={<AddRecipe isLogged={isLogged} setIsLogged={setIsLogged} />}
 				/>
-				<Route element={<Navigation />}>
-					<Route path="login" element={<LoggedView />} />
-					<Route path="register" element={<Reg />} />
+				{/* <Route path="login">
+					<Route
+						element={
+							<LoggedView isLogged={isLogged} setIsLogged={setIsLogged} />
+						}
+					/>
+					<Route path="recipes/:cathegory" element={<RecipesInCathegory />} />
+					<Route path="recipes/:cathegory/addrecipe" element={<AddRecipe />} />
 				</Route>
+				<Route path="register" element={<Reg />} /> */}
 			</Routes>
 		</HashRouter>
 	);

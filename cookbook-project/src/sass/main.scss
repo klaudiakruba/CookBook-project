@@ -22,7 +22,7 @@ body {
 nav {
 	display: flex;
 	align-items: center;
-	height: 5vh;
+	height: 6vh;
 	width: 100vw;
 	background-color: darken($third-color, 6%);
 
@@ -192,14 +192,18 @@ nav {
 /******** LOGGED VIEW *********/
 .log_view {
 	display: flex;
-	justify-content: flex-end;
+	// border: 2px solid green;
+	position: relative;
 	.name {
-		font-family: $font-text;
+		font-family: $font-title;
 		font-size: 2rem;
 		font-weight: bold;
 		color: $font-color-basic;
 		padding-right: 2rem;
 		align-items: flex-end;
+		position: absolute;
+		top: -3rem;
+		right: 0;
 	}
 	.login_img {
 	}
@@ -210,7 +214,7 @@ nav {
 	align-items: center;
 	width: 100vw;
 	height: 100vh;
-	background-color: cornflowerblue;
+	background-color: $third-color;
 
 	.recipe_cathegory {
 		display: flex;
@@ -244,6 +248,116 @@ nav {
 			height: 3rem;
 			width: 59vw;
 			padding: 0;
+		}
+		button {
+			background-color: adjust-color($font-color-basic, $lightness: 30%);
+			color: $third-color;
+		}
+	}
+}
+
+/******RecipesInCathegory******/
+
+.view_recipes {
+	width: 100vw;
+	height: 100vh;
+	font-family: $font-text;
+	font-size: 2rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	.add_recipe_button {
+		padding: 2rem;
+		background-color: adjust-color($font-color-basic, $lightness: 30%);
+		border-radius: 3rem;
+		text-decoration: none;
+		color: $third-color;
+		cursor: pointer;
+	}
+
+	.recipes_list {
+		display: flex;
+		flex-direction: column;
+
+		border: 2px solid adjust-color($font-color-basic, $lightness: 30%);
+		border-radius: 3rem;
+		padding: 3rem;
+		margin-top: 10rem;
+
+		h3 {
+			font-weight: bold;
+			padding-bottom: 2rem;
+			text-decoration: underline;
+		}
+		.recipe {
+			padding-bottom: 1rem;
+		}
+	}
+}
+
+/******Add Recipe *****/
+
+.add_recipe {
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+	flex-direction: column;
+	justify-content: start;
+	align-items: center;
+	position: relative;
+
+	h2 {
+		position: absolute;
+		top: -1.8em;
+		right: 1rem;
+		font-weight: bold;
+		font-size: 1.5rem;
+		font-family: $font-title;
+		color: adjust-color($font-color-basic, $lightness: 30%);
+	}
+
+	form {
+		padding-top: 3rem;
+		font-size: $font-text;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		input {
+			width: 60vw;
+			height: 2rem;
+			padding-bottom: 1rem;
+		}
+		.subtitles {
+			display: flex;
+			padding-top: 1rem;
+			gap: 7rem;
+			font-size: 1.8rem;
+			font-family: $font-text;
+		}
+		button {
+			color: $third-color;
+			font-weight: bold;
+			border-radius: 3rem;
+			border: none;
+			padding: 1rem;
+			gap: 2rem;
+			width: 60vw;
+			background-color: $font-color-secondary;
+			cursor: pointer;
+		}
+
+		.buttons_container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 7rem;
+			button {
+				margin: 5rem 0 5rem 0;
+				background-color: adjust-color($font-color-basic, $lightness: 30%);
+				width: auto;
+			}
 		}
 	}
 }

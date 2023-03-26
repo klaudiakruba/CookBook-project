@@ -1,13 +1,19 @@
 import React from "react";
-import MainView from "./MainView";
 import { Outlet } from "react-router-dom";
 
-const Navigation = () => {
+const NavDashboard = () => {
 	return (
 		<>
 			<nav>
 				<h1 className="logo">Twoja książka kucharska</h1>
 			</nav>
+		</>
+	);
+};
+const Navigation = () => {
+	return (
+		<>
+			<NavDashboard />
 			<Outlet />
 		</>
 	);

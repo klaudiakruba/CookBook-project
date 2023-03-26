@@ -14,18 +14,18 @@ const MainView = ({ isLogged, setIsLogged }) => {
 	};
 	//function which set up login and password from state
 	const onClick = () => {
-		if (login === "Coders" && password === "Lab") {
+		if (login === "K" && password === "K") {
 			return setIsLogged(true);
 		} else {
 			setIsLogged(false);
 			setErrorMessage("Login lub hasło niepoprawne");
 		}
 	};
-	return (
-		<>
-			{isLogged ? (
-				<LoggedView />
-			) : (
+	if (isLogged) {
+		return <LoggedView />;
+	} else {
+		return (
+			<>
 				<div className="first_view">
 					<section className="first-page__main">
 						<img src={cookbook} className="main_img" alt="CookBook"></img>
@@ -74,9 +74,9 @@ const MainView = ({ isLogged, setIsLogged }) => {
 						</div>
 					</section>
 				</div>
-			)}
-		</>
-	);
+			</>
+		);
+	}
 };
 
 export default MainView;

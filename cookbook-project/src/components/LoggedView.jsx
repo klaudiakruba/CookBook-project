@@ -1,22 +1,29 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
+import RecipesInCathegory from "./RecipesInCathegory";
 
-const LoggedView = ({ isLogged, setIsLogged }) => {
+const LoggedView = ({ isLogged, setIsLogged, login }) => {
 	const [addCathegory, setAddCathegory] = useState("");
 	const [cathegories, setCathegories] = useState([]);
 
+	//nie wyswietla sie navigacja oraz nie zmienia login na podany przez uzytkownika
 	const handleLogStatus = () => {
 		if (isLogged) {
 			return setIsLogged(true);
 		}
 	};
-	const { userName } = useParams();
 
 	const onSubmit = (e) => {
 		e.preventDefault();
 		setAddCathegory();
 		setCathegories([...cathegories, addCathegory]);
 	};
+
+	const getStyle =
+		() =>
+		({ isActive }) =>
+			isActive ? { fontWeight: 900 } : undefined;
+
 	return (
 		<section>
 			<div className="log_view">
@@ -27,9 +34,11 @@ const LoggedView = ({ isLogged, setIsLogged }) => {
 				<ul className="recipe_cathegory">
 					{cathegories.map((cathegory, idx) => {
 						return (
-							<li className="cathegory" key={idx}>{`${
-								idx + 1
-							}. ${cathegory}`}</li>
+							<li className="cathegory" key={idx}>
+								<NavLink style={getStyle()} to={`recipes/${cathegory}`}>
+									{`${idx + 1}. ${cathegory}`}
+								</NavLink>
+							</li>
 						);
 					})}
 				</ul>
