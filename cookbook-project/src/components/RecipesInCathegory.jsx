@@ -1,13 +1,10 @@
 import React from "react";
-import LoggedView from "./LoggedView";
-import AddRecipe from "./AddRecipe";
 import { NavLink } from "react-router-dom";
-const RecipesInCathegory = () => {
-	// const { cathegory } = useParams();
-
+const RecipesInCathegory = ({ cathegory }) => {
 	return (
 		<div className="view_recipes">
-			<NavLink to="/addRecipe" className="add_recipe_button">
+			<h2>{`Kategoria :${cathegory}`} </h2>
+			<NavLink to="addRecipe/" className="add_recipe_button">
 				Dodaj nowy przepis
 			</NavLink>
 			<div className="recipes_list">

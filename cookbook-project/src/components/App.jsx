@@ -16,26 +16,18 @@ import {
 } from "react-router-dom";
 
 const App = () => {
-	const [isLogged, setIsLogged] = useState(false);
+	const [user, setUser] = useState(false);
 
 	return (
 		<HashRouter>
-			<Navigation isLogged={isLogged} setIsLogged={setIsLogged} />
 			<Routes>
-				<Route
-					path="/"
-					element={<AddRecipe isLogged={isLogged} setIsLogged={setIsLogged} />}
-				/>
-				{/* <Route path="login">
-					<Route
-						element={
-							<LoggedView isLogged={isLogged} setIsLogged={setIsLogged} />
-						}
-					/>
+				<Route path="/" element={<MainView setUser={setUser} />} />
+				<Route element={<Navigation user={user} />}>
+					<Route path="logged" element={<LoggedView />} />
 					<Route path="recipes/:cathegory" element={<RecipesInCathegory />} />
 					<Route path="recipes/:cathegory/addrecipe" element={<AddRecipe />} />
 				</Route>
-				<Route path="register" element={<Reg />} /> */}
+				<Route path="register" element={<Reg />} />
 			</Routes>
 		</HashRouter>
 	);

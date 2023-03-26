@@ -17,19 +17,31 @@ body {
 .first_view {
 	display: flex;
 	flex-direction: column;
-	// z-index: -1;
 }
 nav {
 	display: flex;
 	align-items: center;
-	height: 6vh;
-	width: 100vw;
+	justify-content: space-between;
+	height: 5vh;
+	padding: 1rem;
 	background-color: darken($third-color, 6%);
 
 	.logo {
 		font-family: $font-title;
 		font-size: 1.5rem;
 		color: $font-color-basic;
+		font-weight: bold;
+	}
+
+	.name {
+		font-family: $font-title;
+		font-size: 2rem;
+		font-weight: bold;
+		color: $font-color-basic;
+
+		justify-content: flex-end;
+	}
+	.login_img {
 	}
 }
 
@@ -190,24 +202,7 @@ nav {
 }
 
 /******** LOGGED VIEW *********/
-.log_view {
-	display: flex;
-	// border: 2px solid green;
-	position: relative;
-	.name {
-		font-family: $font-title;
-		font-size: 2rem;
-		font-weight: bold;
-		color: $font-color-basic;
-		padding-right: 2rem;
-		align-items: flex-end;
-		position: absolute;
-		top: -3rem;
-		right: 0;
-	}
-	.login_img {
-	}
-}
+
 .logged_view {
 	display: flex;
 	flex-direction: column;
@@ -226,8 +221,8 @@ nav {
 		width: 60vw;
 		margin: 2rem;
 		.cathegory {
-			border-bottom: 2px solid $font-color-secondary;
 			width: 60vw;
+			text-decoration: none;
 		}
 	}
 	form.add_cath_form {
@@ -240,7 +235,7 @@ nav {
 			font-family: $font-text;
 			align-self: center;
 			width: 60vw;
-			height: 5rem;
+			height: 4rem;
 			font-size: 2rem;
 		}
 		input {
@@ -250,13 +245,14 @@ nav {
 			padding: 0;
 		}
 		button {
-			background-color: adjust-color($font-color-basic, $lightness: 30%);
+			background-color: adjust-color($font-color-basic, $lightness: 20%);
 			color: $third-color;
+			border-radius: 3rem;
 		}
 	}
 }
 
-/******RecipesInCathegory******/
+/******RECIPES IN CATHEGORY ******/
 
 .view_recipes {
 	width: 100vw;
@@ -270,7 +266,7 @@ nav {
 
 	.add_recipe_button {
 		padding: 2rem;
-		background-color: adjust-color($font-color-basic, $lightness: 30%);
+		background-color: adjust-color($font-color-basic, $lightness: 20%);
 		border-radius: 3rem;
 		text-decoration: none;
 		color: $third-color;
@@ -281,7 +277,7 @@ nav {
 		display: flex;
 		flex-direction: column;
 
-		border: 2px solid adjust-color($font-color-basic, $lightness: 30%);
+		border: 2px solid adjust-color($font-color-basic, $lightness: 20%);
 		border-radius: 3rem;
 		padding: 3rem;
 		margin-top: 10rem;
@@ -297,7 +293,7 @@ nav {
 	}
 }
 
-/******Add Recipe *****/
+/******ADD RECIPE *****/
 
 .add_recipe {
 	display: flex;
@@ -310,12 +306,11 @@ nav {
 
 	h2 {
 		position: absolute;
-		top: -1.8em;
-		right: 1rem;
-		font-weight: bold;
+		top: -1em;
+		left: 1rem;
 		font-size: 1.5rem;
 		font-family: $font-title;
-		color: adjust-color($font-color-basic, $lightness: 30%);
+		color: $font-color-basic;
 	}
 
 	form {
@@ -355,7 +350,7 @@ nav {
 			gap: 7rem;
 			button {
 				margin: 5rem 0 5rem 0;
-				background-color: adjust-color($font-color-basic, $lightness: 30%);
+				background-color: adjust-color($font-color-basic, $lightness: 20%);
 				width: auto;
 			}
 		}

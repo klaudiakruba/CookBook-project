@@ -1,11 +1,15 @@
 import React from "react";
 
 const AddRecipe = () => {
+	const onSubmit = (e) => {
+		e.preventDefault();
+	};
+
 	return (
 		<>
 			<div className="add_recipe">
 				<h2>Dodawanie przepisu</h2>
-				<form>
+				<form onSubmit={onSubmit}>
 					<input placeholder="Wpisz nazwę przepisu"></input>
 					<div className="subtitles">
 						<h3> Lista składników</h3>
