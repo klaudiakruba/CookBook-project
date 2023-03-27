@@ -4,6 +4,7 @@ import Reg from "./Register_view";
 import LoggedView from "./LoggedView";
 import RecipesInCathegory from "./RecipesInCathegory";
 import AddRecipe from "./AddRecipe";
+import RecipesList from "./RecipesList";
 import "./App.css";
 import { useState } from "react";
 import {
@@ -26,6 +27,10 @@ const App = () => {
 					<Route path="logged" element={<LoggedView />} />
 					<Route path="recipes/:cathegory" element={<RecipesInCathegory />} />
 					<Route path="recipes/:cathegory/addrecipe" element={<AddRecipe />} />
+					<Route
+						path="recipes/:cathegory/recipeslist"
+						element={<RecipesList />}
+					/>
 				</Route>
 				<Route path="register" element={<Reg />} />
 			</Routes>

@@ -1,6 +1,11 @@
-import React from "react";
+import { React, useState } from "react";
 
 const AddRecipe = () => {
+	const [ingredient, setIngredient] = useState([]);
+	// const addingIngredients = ()=>{
+
+	// }
+
 	const onSubmit = (e) => {
 		e.preventDefault();
 	};
@@ -16,8 +21,11 @@ const AddRecipe = () => {
 						<h3>Ilość</h3>
 					</div>
 					<div className="buttons_container">
-						<button>Podaj składnik</button>
-						<button>Podaj ilość</button>
+						<input
+							value={ingredient}
+							onChange={(e) => setIngredient(e.target.value)}
+							placeholder="Wpisz nazwę składnika i ilość"></input>
+						<button onClick={onClick}>Dodaj</button>
 					</div>
 
 					<button type="submit">Zapisz</button>

@@ -160,12 +160,9 @@ nav {
 
 // register view
 .reg_container {
+	@include basic-style;
 	width: auto;
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	position: absolute;
 	background-color: $third-color;
 	padding: 2rem;
 
@@ -204,11 +201,8 @@ nav {
 /******** LOGGED VIEW *********/
 
 .logged_view {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 100vw;
-	height: 100vh;
+	@include basic-style;
+	position: bsolute;
 	background-color: $third-color;
 
 	.recipe_cathegory {
@@ -255,15 +249,13 @@ nav {
 /******RECIPES IN CATHEGORY ******/
 
 .view_recipes {
-	width: 100vw;
-	height: 100vh;
+	@include basic-style;
 	font-family: $font-text;
 	font-size: 2rem;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
 
+	h2 {
+		@include subtitle-style;
+	}
 	.add_recipe_button {
 		padding: 2rem;
 		background-color: adjust-color($font-color-basic, $lightness: 20%);
@@ -296,21 +288,10 @@ nav {
 /******ADD RECIPE *****/
 
 .add_recipe {
-	display: flex;
-	width: 100vw;
-	height: 100vh;
-	flex-direction: column;
-	justify-content: start;
-	align-items: center;
-	position: relative;
+	@include basic-style;
 
 	h2 {
-		position: absolute;
-		top: -1em;
-		left: 1rem;
-		font-size: 1.5rem;
-		font-family: $font-title;
-		color: $font-color-basic;
+		@include subtitle-style;
 	}
 
 	form {
@@ -353,6 +334,35 @@ nav {
 				background-color: adjust-color($font-color-basic, $lightness: 20%);
 				width: auto;
 			}
+		}
+	}
+}
+
+/****** RECIPES LIST *****/
+.recipes_list_container {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	position: relative;
+
+	h2 {
+		@include subtitle-style;
+	}
+	.recipes_list {
+		margin-top: 2rem;
+		padding: 2rem;
+		border: 2px solid adjust-color($font-color-basic, $lightness: 20%);
+		border-radius: 2rem;
+
+		li {
+			font-family: $font-text;
+			padding: 0.5rem;
+			font-size: 2rem;
+			cursor: pointer;
+			text-decoration: none;
 		}
 	}
 }
