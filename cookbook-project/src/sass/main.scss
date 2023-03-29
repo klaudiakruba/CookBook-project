@@ -295,22 +295,71 @@ nav {
 	}
 
 	form {
+		position: absolute;
+		top: -6rem;
+		height: 100%;
+		width: 100vw;
 		padding-top: 3rem;
 		font-size: $font-text;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		justify-content: space-around;
 		input {
-			width: 60vw;
+			width: 40vw;
 			height: 2rem;
-			padding-bottom: 1rem;
+			border: none;
+			border-bottom: 1px solid $font-color-basic;
+			background-color: transparent;
+			&::placeholder {
+				text-align: center;
+			}
 		}
-		.subtitles {
+		.recipe_name {
 			display: flex;
-			padding-top: 1rem;
-			gap: 7rem;
-			font-size: 1.8rem;
+			justify-content: center;
+			align-items: center;
+			gap: 2rem;
+			flex-direction: column;
+			label {
+				font-size: 2rem;
+				font-family: $font-text;
+			}
+
+			.subtitles {
+				padding: 3rem;
+				display: flex;
+				gap: 5rem;
+				font-size: 1.8rem;
+				font-family: $font-text;
+				font-size: 2rem;
+			}
+		}
+
+		.input_container {
+			padding-top: 2rem;
+			display: flex;
+
+			align-items: flex-end;
+			gap: 1rem;
+			input {
+				width: 40vw;
+				height: 2rem;
+				padding-bottom: 1rem;
+			}
+			input:nth-child(2) {
+				width: 20vw;
+			}
+		}
+
+		.ingredients_list {
+			width: 60vw;
+			font-size: 2rem;
 			font-family: $font-text;
+			display: flex;
+			font-display: row;
+			justify-content: space-between;
+			padding: 0.5rem;
 		}
 		button {
 			color: $third-color;
@@ -319,20 +368,26 @@ nav {
 			border: none;
 			padding: 1rem;
 			gap: 2rem;
-			width: 60vw;
+			width: 40vw;
 			background-color: $font-color-secondary;
 			cursor: pointer;
 		}
 
 		.buttons_container {
+			padding-top: 2rem;
 			display: flex;
-			justify-content: center;
+			flex-direction: column;
 			align-items: center;
-			gap: 7rem;
 			button {
-				margin: 5rem 0 5rem 0;
+				margin: 1.5rem 0rem 2rem 0rem;
 				background-color: adjust-color($font-color-basic, $lightness: 20%);
-				width: auto;
+				width: 50vw;
+			}
+
+			button:nth-child(3) {
+				background-color: $fourth-color;
+				color: #000;
+				width: 40vw;
 			}
 		}
 	}
