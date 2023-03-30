@@ -1,14 +1,32 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const AddRecipe = () => {
+const AddRecipe = ({ setRecipes }) => {
+	const navigate = useNavigate();
 	const [recipeName, setRecipeName] = useState("");
 	const [ingredientsList, setIngredientsList] = useState([]);
 	const [ingredient, setIngredient] = useState("");
 	const [quantity, setQuantity] = useState("");
+	const [clickedSave, setClickedSave] = useState(false);
+
+	useEffect(() => {
+		if (clickedSave) {
+			let newRecipe = {
+				recipeName: recipeName,
+				ingredientsList: ingredientsList,
+			};
+			console.log(newRecipe);
+			setRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
+			console.log(setRecipes());
+			navigate("/recipes/:cathegory");
+		}
+	}, [clickedSave]);
 
 	const onSubmit = (e) => {
 		e.preventDefault();
+		setClickedSave(true);
 	};
+
 	const addIngredient = () => {
 		const newIngredient = [
 			...ingredientsList,
@@ -18,6 +36,7 @@ const AddRecipe = () => {
 		setIngredient("");
 		setQuantity("");
 	};
+
 	return (
 		<div className="add_recipe">
 			<h2>Dodawanie przepisu</h2>
@@ -42,7 +61,7 @@ const AddRecipe = () => {
 								<li key={index}>
 									{index + 1}. {ing.name}
 								</li>
-								<li key={index}>{ing.quantity}</li>
+								<li key={index + 1}>{ing.quantity}</li>
 							</div>
 						))}
 					</ul>
