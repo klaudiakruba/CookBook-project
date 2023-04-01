@@ -252,12 +252,13 @@ nav {
 	@include basic-style;
 	font-family: $font-text;
 	font-size: 2rem;
+	padding-top: 4rem;
 
 	h2 {
 		@include subtitle-style;
 	}
 	.add_recipe_button {
-		padding: 2rem;
+		padding: 1.4rem;
 		background-color: adjust-color($font-color-basic, $lightness: 20%);
 		border-radius: 3rem;
 		text-decoration: none;
@@ -268,20 +269,29 @@ nav {
 	.recipes_list {
 		display: flex;
 		flex-direction: column;
-
 		border: 2px solid adjust-color($font-color-basic, $lightness: 20%);
 		border-radius: 3rem;
 		padding: 3rem;
-		margin-top: 10rem;
-
-		h3 {
+		margin-top: 10rem h3 {
 			font-weight: bold;
 			padding-bottom: 2rem;
 			text-decoration: underline;
 		}
 		.recipe {
 			padding-bottom: 1rem;
+			color: $font-color-basic;
+			text-decoration: none;
+			&:hover {
+				cursor: pointer;
+			}
+			&:visited {
+				font-weight: 900;
+				color: $font-color-secondary;
+			}
 		}
+	}
+	.no_recipes {
+		padding-top: 4rem;
 	}
 }
 

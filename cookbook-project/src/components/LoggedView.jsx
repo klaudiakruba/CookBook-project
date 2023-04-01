@@ -1,14 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
 const LoggedView = () => {
-	const [addCathegory, setAddCathegory] = useState("");
-	const [cathegories, setCathegories] = useState([]);
+	const [addCategory, setAddCategory] = useState("");
+	const [categories, setCategories] = useState([]);
+
+	const getCategories = async () => {
+		const querySnapshot = await getDocs(collection(db, "categories"));
+		const tempCategories = [];
+		querySnapshot.forEach((doc) => {
+			tempCategories.push(doc.data());
+		});
+		setCategories(tempCategories);
+	};
+
+	useEffect(() => {
+		getCategories();
+	}, []);
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		setAddCathegory();
-		setCathegories([...cathegories, addCathegory]);
+		setAddCategory("");
+		setCategories([...categories, addCategory]);
 	};
 
 	const getStyle =
@@ -18,13 +32,20 @@ const LoggedView = () => {
 
 	return (
 		<section>
+			<div>
+				{categories.map(({ category }) => (
+					<div>
+						<h2>{category}</h2>
+					</div>
+				))}
+			</div>
 			<div className="logged_view">
-				<ul className="recipe_cathegory">
-					{cathegories.map((cathegory, idx) => {
+				<ul className="recipe_category">
+					{categories.map((category, idx) => {
 						return (
-							<li className="cathegory" key={idx}>
-								<NavLink style={getStyle()} to={`/recipes/${cathegory}`}>
-									{`${idx + 1}. ${cathegory}`}
+							<li className="category" key={idx}>
+								<NavLink style={getStyle()} to={`/recipes/${category}`}>
+									{`${idx + 1}. ${category}`}
 								</NavLink>
 							</li>
 						);
@@ -33,10 +54,10 @@ const LoggedView = () => {
 				<form className="add_cath_form" onSubmit={onSubmit}>
 					<label>
 						<input
-							name="cathegory"
+							name="category"
 							type="text"
-							value={addCathegory}
-							onChange={(e) => setAddCathegory(e.target.value)}
+							value={addCategory || ""}
+							onChange={(e) => setAddCategory(e.target.value)}
 							placeholder="np.przepisy na ciasta"></input>
 					</label>
 					<button type="submit" className="addCath">

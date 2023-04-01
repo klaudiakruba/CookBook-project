@@ -1,8 +1,10 @@
 import { React, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 
-const AddRecipe = ({ setRecipes }) => {
+const AddRecipe = ({ recipes, setRecipes }) => {
 	const navigate = useNavigate();
+	const location = useLocation();
+	const { category } = useParams();
 	const [recipeName, setRecipeName] = useState("");
 	const [ingredientsList, setIngredientsList] = useState([]);
 	const [ingredient, setIngredient] = useState("");
@@ -12,13 +14,14 @@ const AddRecipe = ({ setRecipes }) => {
 	useEffect(() => {
 		if (clickedSave) {
 			let newRecipe = {
-				recipeName: recipeName,
-				ingredientsList: ingredientsList,
+				category,
+				name: recipeName,
+				ingredientsList,
 			};
 			console.log(newRecipe);
 			setRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
-			console.log(setRecipes());
-			navigate("/recipes/:cathegory");
+
+			navigate(`/recipes/${category}`);
 		}
 	}, [clickedSave]);
 
@@ -45,7 +48,7 @@ const AddRecipe = ({ setRecipes }) => {
 					<label>Nazwa przepisu</label>
 					<input
 						type="text"
-						value={recipeName}
+						value={recipeName || ""}
 						onChange={(e) => setRecipeName(e.target.value)}
 						placeholder="Wpisz nazwę przepisu"></input>
 					<div className="subtitles">
@@ -57,11 +60,11 @@ const AddRecipe = ({ setRecipes }) => {
 				<div>
 					<ul>
 						{ingredientsList.map((ing, index) => (
-							<div className="ingredients_list">
-								<li key={index}>
+							<div className="ingredients_list" key={index}>
+								<li>
 									{index + 1}. {ing.name}
 								</li>
-								<li key={index + 1}>{ing.quantity}</li>
+								<li>{ing.quantity}</li>
 							</div>
 						))}
 					</ul>

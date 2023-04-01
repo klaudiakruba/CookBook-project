@@ -2,9 +2,8 @@ import Navigation from "./Navigation";
 import MainView from "./MainView";
 import Reg from "./Register_view";
 import LoggedView from "./LoggedView";
-import RecipesInCathegory from "./RecipesInCathegory";
+import RecipesInCategory from "./RecipesInCategory";
 import AddRecipe from "./AddRecipe";
-import RecipesList from "./RecipesList";
 import "./App.css";
 import { useState } from "react";
 import {
@@ -27,17 +26,17 @@ const App = () => {
 				<Route element={<Navigation user={user} />}>
 					<Route path="logged" element={<LoggedView />} />
 					<Route
-						path="recipes/:cathegory"
-						element={<RecipesInCathegory recipes={recipes} />}
+						path="recipes/:category"
+						element={<RecipesInCategory recipes={recipes} />}
 					/>
 
 					<Route
-						path="recipes/:cathegory/addrecipe"
-						element={<AddRecipe setRecipes={setRecipes} />}
+						path="recipes/:category/addrecipe"
+						element={<AddRecipe recipes={recipes} setRecipes={setRecipes} />}
 					/>
 					{/* <Route
-						path="recipes/:cathegory/recipeslist"
-						element={<RecipesList recipes={recipes} />}
+						path="/recipes/:category/:recipeName/edit"
+						element={<AddRecipe />}
 					/> */}
 				</Route>
 				<Route path="register" element={<Reg />} />
