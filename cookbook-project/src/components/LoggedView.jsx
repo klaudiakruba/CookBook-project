@@ -1,28 +1,52 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import {
+	collection,
+	query,
+	where,
+	getDocs,
+	addDoc,
+	setDoc,
+} from "firebase/firestore";
+
 import { db } from "../firebase";
+
 const LoggedView = () => {
 	const [addCategory, setAddCategory] = useState("");
 	const [categories, setCategories] = useState([]);
 
+	const addCategories = async (categoryToAdd) => {
+		if (addCategory.trim()) {
+			const categoryToAdd = {
+				category: addCategory.trim(),
+			};
+			try {
+				await addDoc(collection(db, "categories"), categoryToAdd);
+				setAddCategory("");
+				getCategories();
+			} catch (error) {
+				console.error("Categories could't be added  - ", error);
+			}
+		}
+	};
 	const getCategories = async () => {
 		const querySnapshot = await getDocs(collection(db, "categories"));
 		const tempCategories = [];
 		querySnapshot.forEach((doc) => {
-			tempCategories.push(doc.data());
+			const category = doc.data().category;
+			tempCategories.push(category);
 		});
 		setCategories(tempCategories);
 	};
 
 	useEffect(() => {
 		getCategories();
-	}, []);
+	}, [addCategory]);
 
-	const onSubmit = (e) => {
+	const onSubmit = async (e) => {
 		e.preventDefault();
-		setAddCategory("");
-		setCategories([...categories, addCategory]);
+
+		await addCategories({ category: addCategory });
 	};
 
 	const getStyle =
@@ -32,19 +56,15 @@ const LoggedView = () => {
 
 	return (
 		<section>
-			<div>
-				{categories.map(({ category }) => (
-					<div>
-						<h2>{category}</h2>
-					</div>
-				))}
-			</div>
 			<div className="logged_view">
 				<ul className="recipe_category">
 					{categories.map((category, idx) => {
 						return (
 							<li className="category" key={idx}>
-								<NavLink style={getStyle()} to={`/recipes/${category}`}>
+								<NavLink
+									className="category"
+									style={getStyle()}
+									to={`/recipes/${category}`}>
 									{`${idx + 1}. ${category}`}
 								</NavLink>
 							</li>
