@@ -1,9 +1,37 @@
 import { React, useState, useEffect } from "react";
 import { NavLink, useParams } from "react-router-dom";
+import {
+	collection,
+	query,
+	where,
+	getDocs,
+	addDoc,
+	setDoc,
+} from "firebase/firestore";
 
-const RecipesInCategory = ({ recipes }) => {
+import { db } from "../firebase";
+
+const RecipesInCategory = ({ recipes, recipeName, setRecipeName }) => {
 	const { category } = useParams();
 
+	const getRecipe = async (recipeName, category) => {
+		const q = query(
+			collection(db, "categories", "recipes"),
+			where("category", "==", category),
+			where("name", "==", recipeName.trim())
+		);
+		const querySnapshot = await getDocs(q);
+		const tempRecipes = [];
+		querySnapshot.forEach((doc) => {
+			const recipe = doc.data();
+			tempRecipes.push(recipe);
+		});
+		setRecipeName(tempRecipes);
+	};
+
+	useEffect(() => {
+		getRecipe(recipeName, category);
+	}, [recipeName, category]);
 	return (
 		<div className="view_recipes">
 			<h2>Kategoria: {category} </h2>

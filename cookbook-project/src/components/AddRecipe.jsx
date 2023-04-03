@@ -1,16 +1,35 @@
 import { React, useState, useEffect } from "react";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
-
-const AddRecipe = ({ recipes, setRecipes }) => {
+import { useNavigate, useParams } from "react-router-dom";
+import { db } from "../firebase";
+import {
+	collection,
+	query,
+	where,
+	getDocs,
+	addDoc,
+	setDoc,
+} from "firebase/firestore";
+const AddRecipe = ({ setRecipes, recipeName, setRecipeName }) => {
 	const navigate = useNavigate();
-	const location = useLocation();
 	const { category } = useParams();
-	const [recipeName, setRecipeName] = useState("");
 	const [ingredientsList, setIngredientsList] = useState([]);
 	const [ingredient, setIngredient] = useState("");
 	const [quantity, setQuantity] = useState("");
 	const [clickedSave, setClickedSave] = useState(false);
 
+	const handleAddRecipe = async (recipeName, category) => {
+		const recipeToAdd = {
+			name: recipeName.trim(),
+			category: category.trim(),
+			ingredientsList,
+		};
+		try {
+			await addDoc(collection(db, "categories", "recipes"), recipeToAdd);
+			setRecipeName("");
+		} catch (error) {
+			console.error("Categories could't be added  - ", error);
+		}
+	};
 	useEffect(() => {
 		if (clickedSave) {
 			let newRecipe = {
@@ -20,7 +39,6 @@ const AddRecipe = ({ recipes, setRecipes }) => {
 			};
 			console.log(newRecipe);
 			setRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
-
 			navigate(`/recipes/${category}`);
 		}
 	}, [clickedSave]);
@@ -28,6 +46,7 @@ const AddRecipe = ({ recipes, setRecipes }) => {
 	const onSubmit = (e) => {
 		e.preventDefault();
 		setClickedSave(true);
+		handleAddRecipe();
 	};
 
 	const addIngredient = () => {

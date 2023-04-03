@@ -15,7 +15,8 @@ const LoggedView = () => {
 	const [addCategory, setAddCategory] = useState("");
 	const [categories, setCategories] = useState([]);
 
-	const addCategories = async (categoryToAdd) => {
+	const addCategories = async () => {
+		//trim usuwa białe znaki
 		if (addCategory.trim()) {
 			const categoryToAdd = {
 				category: addCategory.trim(),
@@ -43,10 +44,9 @@ const LoggedView = () => {
 		getCategories();
 	}, [addCategory]);
 
-	const onSubmit = async (e) => {
+	const onSubmit = (e) => {
 		e.preventDefault();
-
-		await addCategories({ category: addCategory });
+		addCategories({ category: addCategory });
 	};
 
 	const getStyle =

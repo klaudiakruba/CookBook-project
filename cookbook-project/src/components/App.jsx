@@ -18,6 +18,7 @@ import {
 const App = () => {
 	const [user, setUser] = useState(false);
 	const [recipes, setRecipes] = useState([]);
+	const [recipeName, setRecipeName] = useState("");
 
 	return (
 		<HashRouter>
@@ -27,12 +28,24 @@ const App = () => {
 					<Route path="logged" element={<LoggedView />} />
 					<Route
 						path="recipes/:category"
-						element={<RecipesInCategory recipes={recipes} />}
+						element={
+							<RecipesInCategory
+								recipes={recipes}
+								recipeName={recipeName}
+								setRecipeName={setRecipeName}
+							/>
+						}
 					/>
 
 					<Route
 						path="recipes/:category/addrecipe"
-						element={<AddRecipe recipes={recipes} setRecipes={setRecipes} />}
+						element={
+							<AddRecipe
+								setRecipes={setRecipes}
+								recipeName={recipeName}
+								setRecipeName={setRecipeName}
+							/>
+						}
 					/>
 					{/* <Route
 						path="/recipes/:category/:recipeName/edit"
