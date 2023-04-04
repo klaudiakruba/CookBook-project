@@ -29,20 +29,15 @@ const App = () => {
 					<Route
 						path="recipes/:category"
 						element={
-							<RecipesInCategory
-								recipes={recipes}
-								recipeName={recipeName}
-								setRecipeName={setRecipeName}
-							/>
+							<RecipesInCategory recipes={recipes} setRecipes={setRecipes} />
 						}
 					/>
 
 					<Route
-						path="recipes/:category/addrecipe"
+						path="recipes/:category/:recipeName"
 						element={
 							<AddRecipe
 								setRecipes={setRecipes}
-								recipeName={recipeName}
 								setRecipeName={setRecipeName}
 							/>
 						}

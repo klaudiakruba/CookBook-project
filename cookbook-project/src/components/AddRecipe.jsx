@@ -9,9 +9,9 @@ import {
 	addDoc,
 	setDoc,
 } from "firebase/firestore";
-const AddRecipe = ({ setRecipes, recipeName, setRecipeName }) => {
+const AddRecipe = ({ setRecipes, setRecipeName }) => {
 	const navigate = useNavigate();
-	const { category } = useParams();
+	const { category, recipeName } = useParams();
 	const [ingredientsList, setIngredientsList] = useState([]);
 	const [ingredient, setIngredient] = useState("");
 	const [quantity, setQuantity] = useState("");
@@ -24,8 +24,7 @@ const AddRecipe = ({ setRecipes, recipeName, setRecipeName }) => {
 			ingredientsList,
 		};
 		try {
-			await addDoc(collection(db, "categories", "recipes"), recipeToAdd);
-			setRecipeName("");
+			await addDoc(collection(db, "recipes"), recipeToAdd);
 		} catch (error) {
 			console.error("Categories could't be added  - ", error);
 		}
@@ -46,7 +45,7 @@ const AddRecipe = ({ setRecipes, recipeName, setRecipeName }) => {
 	const onSubmit = (e) => {
 		e.preventDefault();
 		setClickedSave(true);
-		handleAddRecipe();
+		handleAddRecipe(recipeName, category);
 	};
 
 	const addIngredient = () => {

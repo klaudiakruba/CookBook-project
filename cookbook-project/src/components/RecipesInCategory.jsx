@@ -11,14 +11,13 @@ import {
 
 import { db } from "../firebase";
 
-const RecipesInCategory = ({ recipes, recipeName, setRecipeName }) => {
+const RecipesInCategory = ({ recipes, setRecipes }) => {
 	const { category } = useParams();
 
-	const getRecipe = async (recipeName, category) => {
+	const getRecipe = async () => {
 		const q = query(
-			collection(db, "categories", "recipes"),
-			where("category", "==", category),
-			where("name", "==", recipeName.trim())
+			collection(db, "recipes"),
+			where("category", "==", category)
 		);
 		const querySnapshot = await getDocs(q);
 		const tempRecipes = [];
@@ -26,12 +25,12 @@ const RecipesInCategory = ({ recipes, recipeName, setRecipeName }) => {
 			const recipe = doc.data();
 			tempRecipes.push(recipe);
 		});
-		setRecipeName(tempRecipes);
+		setRecipes(tempRecipes);
 	};
 
 	useEffect(() => {
-		getRecipe(recipeName, category);
-	}, [recipeName, category]);
+		getRecipe();
+	}, [category]);
 	return (
 		<div className="view_recipes">
 			<h2>Kategoria: {category} </h2>
@@ -48,7 +47,7 @@ const RecipesInCategory = ({ recipes, recipeName, setRecipeName }) => {
 									<NavLink
 										className="recipe"
 										end
-										to={`/recipes/${category}/${recipe.name}`}>
+										to={`/recipes/${category}/${recipe.name}/add`}>
 										{index + 1}. {recipe.name}
 									</NavLink>
 								</li>
