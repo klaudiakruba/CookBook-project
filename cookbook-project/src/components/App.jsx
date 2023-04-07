@@ -19,7 +19,7 @@ const App = () => {
 	const [user, setUser] = useState(false);
 	const [recipes, setRecipes] = useState([]);
 	const [recipeName, setRecipeName] = useState("");
-
+	const [ingredientsList, setIngredientsList] = useState([]);
 	return (
 		<HashRouter>
 			<Routes>
@@ -29,16 +29,23 @@ const App = () => {
 					<Route
 						path="recipes/:category"
 						element={
-							<RecipesInCategory recipes={recipes} setRecipes={setRecipes} />
+							<RecipesInCategory
+								recipes={recipes}
+								setRecipes={setRecipes}
+								recipeName={recipeName}
+								setRecipeName={setRecipeName}
+							/>
 						}
 					/>
 
 					<Route
-						path="recipes/:category/:recipeName"
+						path="recipes/:category/:recipeName/"
 						element={
 							<AddRecipe
 								setRecipes={setRecipes}
 								setRecipeName={setRecipeName}
+								setIngredientsList={setIngredientsList}
+								ingredientsList={ingredientsList}
 							/>
 						}
 					/>

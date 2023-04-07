@@ -9,10 +9,15 @@ import {
 	addDoc,
 	setDoc,
 } from "firebase/firestore";
-const AddRecipe = ({ setRecipes, setRecipeName }) => {
+const AddRecipe = ({
+	setRecipes,
+	setRecipeName,
+	ingredientsList,
+	setIngredientsList,
+}) => {
 	const navigate = useNavigate();
 	const { category, recipeName } = useParams();
-	const [ingredientsList, setIngredientsList] = useState([]);
+
 	const [ingredient, setIngredient] = useState("");
 	const [quantity, setQuantity] = useState("");
 	const [clickedSave, setClickedSave] = useState(false);

@@ -11,8 +11,15 @@ import {
 
 import { db } from "../firebase";
 
-const RecipesInCategory = ({ recipes, setRecipes }) => {
+const RecipesInCategory = ({
+	recipes,
+	setRecipes,
+	recipeName,
+	setIngredientsList,
+	setRecipeName,
+}) => {
 	const { category } = useParams();
+	const [clickedRecipeInList, setClickedRecipeInList] = useState(false);
 
 	const getRecipe = async () => {
 		const q = query(
@@ -31,6 +38,30 @@ const RecipesInCategory = ({ recipes, setRecipes }) => {
 	useEffect(() => {
 		getRecipe();
 	}, [category]);
+
+	// ponizsza funkcja nie dziala
+	const getClickedRecipeInList = async () => {
+		const q = query(
+			collection(db, "recipes"),
+			where("name", "==", clickedRecipeInList)
+		);
+		console.log(clickedRecipeInList);
+		const querySnapshot = await getDocs(q);
+
+		const recipe = querySnapshot.docs[0].data();
+		console.log(recipe);
+		setClickedRecipeInList(recipe);
+		const ingredientsList = recipe.ingredientsList;
+		setIngredientsList(ingredientsList);
+		setRecipeName(clickedRecipeInList);
+		return recipe;
+	};
+
+	useEffect(() => {
+		if (recipeName) {
+			getClickedRecipeInList();
+		}
+	}, [recipeName]);
 	return (
 		<div className="view_recipes">
 			<h2>Kategoria: {category} </h2>
@@ -45,9 +76,10 @@ const RecipesInCategory = ({ recipes, setRecipes }) => {
 							return (
 								<li key={index} className="recipe_element">
 									<NavLink
+										onClick={() => getClickedRecipeInList(true)}
 										className="recipe"
 										end
-										to={`/recipes/${category}/${recipe.name}/add`}>
+										to={`/recipes/${category}/${recipe.name}/`}>
 										{index + 1}. {recipe.name}
 									</NavLink>
 								</li>
