@@ -32,16 +32,28 @@ nav {
 		color: $font-color-basic;
 		font-weight: bold;
 	}
-
-	.name {
-		font-family: $font-title;
-		font-size: 2rem;
-		font-weight: bold;
-		color: $font-color-basic;
-
-		justify-content: flex-end;
-	}
-	.login_img {
+	.left_nav {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		.name {
+			font-family: $font-title;
+			font-size: 2rem;
+			font-weight: bold;
+			color: $font-color-basic;
+		}
+		.logout {
+			color: $font-color-basic;
+			justify-content: flex-end;
+			font-size: 1.2rem;
+			font-family: $font-title;
+			position: absolute;
+			top: 2.5rem;
+			right: 1rem;
+			text-decoration: none;
+		}
+		.login_img {
+		}
 	}
 }
 
