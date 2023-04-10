@@ -48,9 +48,10 @@ nav {
 			font-size: 1.2rem;
 			font-family: $font-title;
 			position: absolute;
-			top: 2.5rem;
+			top: 2rem;
 			right: 1rem;
-			text-decoration: none;
+			background-color: transparent;
+			border: none;
 		}
 		.login_img {
 		}

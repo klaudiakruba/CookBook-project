@@ -17,7 +17,7 @@ import {
 import { AuthContextProvider } from "../context/AuthContext";
 
 const App = () => {
-	const [user, setUser] = useState(false);
+	const [userr, setUserr] = useState(false);
 	const [recipes, setRecipes] = useState([]);
 	const [recipeName, setRecipeName] = useState("");
 	const [ingredientsList, setIngredientsList] = useState([]);
@@ -25,8 +25,8 @@ const App = () => {
 		<HashRouter>
 			<AuthContextProvider>
 				<Routes>
-					<Route path="/" element={<MainView setUser={setUser} />} />
-					<Route element={<Navigation user={user} />}>
+					<Route path="/" element={<MainView setUser={setUserr} />} />
+					<Route element={<Navigation user={userr} />}>
 						<Route path="logged" element={<LoggedView />} />
 						<Route
 							path="recipes/:category"

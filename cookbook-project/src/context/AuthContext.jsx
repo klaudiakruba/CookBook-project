@@ -10,7 +10,7 @@ import { auth } from "../firebase";
 const UserContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-	// const [user, setUser] = useState({});
+	const [user, setUser] = useState({});
 	const authFunctions = {
 		createUser: (email, password) => {
 			return createUserWithEmailAndPassword(auth, email, password);
@@ -26,18 +26,18 @@ export const AuthContextProvider = ({ children }) => {
 		},
 	};
 
-	// useEffect(() => {
-	// 	const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-	// 		console.log(currentUser);
-	// 		setUser(currentUser);
-	// 	});
-	// 	return () => {
-	// 		unsubscribe();
-	// 	};
-	// }, []);
+	useEffect(() => {
+		const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+			console.log(currentUser);
+			setUser(currentUser);
+		});
+		return () => {
+			unsubscribe();
+		};
+	}, []);
 
 	return (
-		<UserContext.Provider value={authFunctions}>
+		<UserContext.Provider value={{ authFunctions, user }}>
 			{children}
 		</UserContext.Provider>
 	);

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { UserAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Reg = () => {
+	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	// const [isLogged, setIsLogged] = useState(false);
@@ -14,6 +16,7 @@ const Reg = () => {
 		setError("");
 		try {
 			await createUser(email, password);
+			navigate("/logged");
 		} catch (e) {
 			setError(e.message);
 			console.log(e.message);
