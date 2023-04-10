@@ -1,31 +1,44 @@
 import React, { useState } from "react";
 import cookbook from "../assets/cookbook.jpg";
 import { Link, useNavigate } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
 
-const MainView = ({ setUser }) => {
+const MainView = ({
+	email,
+	setEmail,
+	password,
+	setPassword,
+	error,
+	setError,
+}) => {
 	const navigate = useNavigate();
-	//state need to correct work
-	const [email, setEmail] = useState(""); //false jesli baza danych
-	const [password, setPassword] = useState(""); //false jesli baza danych
-	const [errorMessage, setErrorMessage] = useState("");
+	const { authFunctions } = UserAuth();
+
 	//Submit handle function
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		onClick();
-	};
-	//function which set up email and password from state
-	const onClick = () => {
-		if (email === "K" && password === "K") {
-			setUser({
-				email: "klaudia@onet.pl",
-				username: "Klaudia",
-			});
+		setError("");
+		try {
+			await authFunctions.signIn(email, password);
 			navigate("/logged");
-		} else {
-			setUser(false);
-			setErrorMessage("email lub hasło niepoprawne");
+		} catch (e) {
+			setError(e.message);
+			console.log(e.message);
 		}
 	};
+	//function which set up email and password from state
+	// const onClick = () => {
+	// 	if (email === "K" && password === "K") {
+	// 		setUser({
+	// 			email: "klaudia@onet.pl",
+	// 			username: "Klaudia",
+	// 		});
+	// 		navigate("/logged");
+	// 	} else {
+	// 		setUser(false);
+	// 		setErrorMessage("email lub hasło niepoprawne");
+	// 	}
+	// };
 	return (
 		<>
 			<div className="first_view">
@@ -62,9 +75,7 @@ const MainView = ({ setUser }) => {
 									onChange={(e) => setPassword(e.target.value)}
 									placeholder="Wpisz hasło"></input>
 							</div>
-							<span className={errorMessage ? "appear" : "disappear"}>
-								{errorMessage}
-							</span>
+							<span className={error ? "appear" : "disappear"}>{error}</span>
 							<button type="submit" className="btn">
 								ZALOGUJ
 							</button>

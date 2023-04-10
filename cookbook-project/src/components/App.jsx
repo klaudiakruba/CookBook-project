@@ -17,6 +17,9 @@ import {
 import { AuthContextProvider } from "../context/AuthContext";
 
 const App = () => {
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [error, setError] = useState("");
 	const [userr, setUserr] = useState(false);
 	const [recipes, setRecipes] = useState([]);
 	const [recipeName, setRecipeName] = useState("");
@@ -25,7 +28,20 @@ const App = () => {
 		<HashRouter>
 			<AuthContextProvider>
 				<Routes>
-					<Route path="/" element={<MainView setUser={setUserr} />} />
+					<Route
+						path="/"
+						element={
+							<MainView
+								email={email}
+								setEmail={setEmail}
+								password={password}
+								setPassword={setPassword}
+								error={error}
+								setError={setError}
+								setUser={setUserr}
+							/>
+						}
+					/>
 					<Route element={<Navigation user={userr} />}>
 						<Route path="logged" element={<LoggedView />} />
 						<Route
@@ -56,7 +72,19 @@ const App = () => {
 						element={<AddRecipe />}
 					/> */}
 					</Route>
-					<Route path="register" element={<Reg />} />
+					<Route
+						path="register"
+						element={
+							<Reg
+								email={email}
+								setEmail={setEmail}
+								password={password}
+								setPassword={setPassword}
+								error={error}
+								setError={setError}
+							/>
+						}
+					/>
 				</Routes>
 			</AuthContextProvider>
 		</HashRouter>

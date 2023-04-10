@@ -2,12 +2,9 @@ import React, { useState } from "react";
 import { UserAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-const Reg = () => {
+const Reg = ({ email, setEmail, password, setPassword, error, setError }) => {
 	const navigate = useNavigate();
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	// const [isLogged, setIsLogged] = useState(false);
-	const [error, setError] = useState("");
+
 	const { createUser } = UserAuth();
 
 	//Submit handle function
