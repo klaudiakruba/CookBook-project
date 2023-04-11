@@ -10,6 +10,7 @@ import {
 } from "firebase/firestore";
 
 import { db } from "../firebase";
+import { UserAuth } from "../context/AuthContext";
 
 const RecipesInCategory = ({
 	recipes,
@@ -19,8 +20,8 @@ const RecipesInCategory = ({
 	setRecipeName,
 }) => {
 	const { category } = useParams();
-	const [clickedRecipeInList, setClickedRecipeInList] = useState(false);
-
+	const [clickedRecipeInList, setClickedRecipeInList] = useState("");
+	const { user } = UserAuth();
 	const getRecipe = async () => {
 		const q = query(
 			collection(db, "recipes"),
@@ -48,20 +49,22 @@ const RecipesInCategory = ({
 		console.log(clickedRecipeInList);
 		const querySnapshot = await getDocs(q);
 
-		const recipe = querySnapshot.docs[0].data();
-		console.log(recipe);
-		setClickedRecipeInList(recipe);
-		const ingredientsList = recipe.ingredientsList;
-		setIngredientsList(ingredientsList);
-		setRecipeName(clickedRecipeInList);
-		return recipe;
+		if (!querySnapshot.empty) {
+			const recipe = querySnapshot.docs[0].data();
+			console.log(recipe);
+			setClickedRecipeInList(recipe.name);
+			const ingredientsList = recipe.ingredientsList;
+			setIngredientsList(ingredientsList);
+			setRecipeName(clickedRecipeInList);
+			return recipe;
+		}
 	};
 
 	useEffect(() => {
-		if (recipeName) {
+		if (clickedRecipeInList) {
 			getClickedRecipeInList();
 		}
-	}, [recipeName]);
+	}, [clickedRecipeInList, setIngredientsList, setRecipeName]);
 	return (
 		<div className="view_recipes">
 			<h2>Kategoria: {category} </h2>
@@ -76,7 +79,7 @@ const RecipesInCategory = ({
 							return (
 								<li key={index} className="recipe_element">
 									<NavLink
-										onClick={() => getClickedRecipeInList(true)}
+										onClick={() => getClickedRecipeInList(recipe.name)}
 										className="recipe"
 										end
 										to={`/recipes/${category}/${recipe.name}/`}>

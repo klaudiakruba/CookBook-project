@@ -5,29 +5,21 @@ import { useNavigate } from "react-router-dom";
 const Reg = ({ email, setEmail, password, setPassword, error, setError }) => {
 	const navigate = useNavigate();
 
-	const { createUser } = UserAuth();
+	const { authFunctions } = UserAuth();
 
 	//Submit handle function
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setError("");
 		try {
-			await createUser(email, password);
+			await authFunctions.createUser(email, password);
 			navigate("/logged");
 		} catch (e) {
 			setError(e.message);
 			console.log(e.message);
 		}
 	};
-	//function which set up login and password from state
-	// const onClick = () => {
-	// 	if (email === "Coders" && password === "Lab") {
-	// 		return setIsLogged(true);
-	// 	} else {
-	// 		setIsLogged(false);
-	// 		setError("Login lub hasło niepoprawne");
-	// 	}
-	// };
+
 	return (
 		<>
 			<div className="reg_container">

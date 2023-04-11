@@ -5,7 +5,7 @@ import LoggedView from "./LoggedView";
 import RecipesInCategory from "./RecipesInCategory";
 import AddRecipe from "./AddRecipe";
 import "./App.css";
-import { useState } from "react";
+import React, { useState } from "react";
 import {
 	HashRouter,
 	Route,
@@ -15,12 +15,14 @@ import {
 	Outlet,
 } from "react-router-dom";
 import { AuthContextProvider } from "../context/AuthContext";
+import { UserAuth } from "../context/AuthContext";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 const App = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
-	const [userr, setUserr] = useState(false);
+
 	const [recipes, setRecipes] = useState([]);
 	const [recipeName, setRecipeName] = useState("");
 	const [ingredientsList, setIngredientsList] = useState([]);
@@ -38,11 +40,10 @@ const App = () => {
 								setPassword={setPassword}
 								error={error}
 								setError={setError}
-								setUser={setUserr}
 							/>
 						}
 					/>
-					<Route element={<Navigation user={userr} />}>
+					<Route element={<Navigation />}>
 						<Route path="logged" element={<LoggedView />} />
 						<Route
 							path="recipes/:category"
@@ -60,6 +61,7 @@ const App = () => {
 							path="recipes/:category/:recipeName/"
 							element={
 								<AddRecipe
+									recipeName={recipeName}
 									setRecipes={setRecipes}
 									setRecipeName={setRecipeName}
 									setIngredientsList={setIngredientsList}

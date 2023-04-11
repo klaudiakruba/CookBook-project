@@ -10,13 +10,14 @@ import {
 	setDoc,
 } from "firebase/firestore";
 const AddRecipe = ({
+	recipeName,
 	setRecipes,
 	setRecipeName,
 	ingredientsList,
 	setIngredientsList,
 }) => {
 	const navigate = useNavigate();
-	const { category, recipeName } = useParams();
+	const { category } = useParams();
 
 	const [ingredient, setIngredient] = useState("");
 	const [quantity, setQuantity] = useState("");
@@ -44,6 +45,9 @@ const AddRecipe = ({
 			console.log(newRecipe);
 			setRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
 			navigate(`/recipes/${category}`);
+		} else {
+			setRecipeName("");
+			setIngredientsList([]);
 		}
 	}, [clickedSave]);
 

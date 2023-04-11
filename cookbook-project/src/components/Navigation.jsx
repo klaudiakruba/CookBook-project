@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Outlet, Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 
 const Navigation = () => {

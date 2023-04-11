@@ -26,19 +26,7 @@ const MainView = ({
 			console.log(e.message);
 		}
 	};
-	//function which set up email and password from state
-	// const onClick = () => {
-	// 	if (email === "K" && password === "K") {
-	// 		setUser({
-	// 			email: "klaudia@onet.pl",
-	// 			username: "Klaudia",
-	// 		});
-	// 		navigate("/logged");
-	// 	} else {
-	// 		setUser(false);
-	// 		setErrorMessage("email lub hasło niepoprawne");
-	// 	}
-	// };
+
 	return (
 		<>
 			<div className="first_view">
@@ -52,7 +40,7 @@ const MainView = ({
 						<form onSubmit={handleSubmit}>
 							<div className="label_container">
 								<label className="log_text" name="email">
-									email/e-mail:
+									Twój email:
 								</label>
 								<input
 									className="input_style"

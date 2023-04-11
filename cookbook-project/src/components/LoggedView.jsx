@@ -11,7 +11,7 @@ import {
 
 import { db } from "../firebase";
 
-const LoggedView = () => {
+const LoggedView = ({ user }) => {
 	const [addCategory, setAddCategory] = useState("");
 	const [categories, setCategories] = useState([]);
 
