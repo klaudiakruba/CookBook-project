@@ -215,8 +215,11 @@ nav {
 
 .logged_view {
 	@include basic-style;
-	position: bsolute;
+
 	background-color: $third-color;
+	background-image: url("/src//assets/flour_back.jpeg");
+	background-repeat: no-repeat;
+	background-size: cover;
 
 	.recipe_category {
 		display: flex;
@@ -225,14 +228,19 @@ nav {
 		font-family: $font-text;
 		font-size: 2rem;
 		background-color: darken($third-color, 10%);
-		width: 60vw;
+		width: 40vw;
 		margin: 2rem;
+		border-radius: 3rem;
+		padding: 1rem 0 1rem 0;
+		border: 2px solid adjust-color($button-color, $lightness: 20%);
+
 		.category {
-			width: 60vw;
+			width: 30vw;
 			text-decoration: none;
 			color: $font-color-basic;
 			padding-bottom: 1rem;
 			font-size: 2.4rem;
+			border-radius: 3rem;
 		}
 	}
 	form.add_cath_form {
@@ -244,18 +252,18 @@ nav {
 		button {
 			font-family: $font-text;
 			align-self: center;
-			width: 60vw;
+			width: 40vw;
 			height: 4rem;
 			font-size: 2rem;
 		}
 		input {
 			margin-bottom: 1.6rem;
 			height: 3rem;
-			width: 59vw;
+			width: 40vw;
 			padding: 0;
 		}
 		button {
-			background-color: adjust-color($font-color-basic, $lightness: 20%);
+			background-color: adjust-color($button-color, $lightness: 20%);
 			color: $third-color;
 			border-radius: 3rem;
 		}
@@ -269,23 +277,29 @@ nav {
 	font-family: $font-text;
 	font-size: 2rem;
 	padding-top: 4rem;
+	background-color: $third-color;
+	background-image: url("/src//assets/flour_back.jpeg");
+	background-repeat: no-repeat;
+	background-size: cover;
 
 	h2 {
 		@include subtitle-style;
 	}
 	.add_recipe_button {
 		padding: 1.4rem;
-		background-color: adjust-color($font-color-basic, $lightness: 20%);
+		background-color: adjust-color($button-color, $lightness: 20%);
 		border-radius: 3rem;
 		text-decoration: none;
 		color: $third-color;
 		cursor: pointer;
+		margin-bottom: 15rem;
 	}
 
 	.recipes_list {
+		background-color: $third-color;
 		display: flex;
 		flex-direction: column;
-		border: 2px solid adjust-color($font-color-basic, $lightness: 20%);
+		border: 2px solid adjust-color($button-color, $lightness: 20%);
 		border-radius: 3rem;
 		padding: 3rem;
 		margin-top: 10rem h3 {
@@ -306,6 +320,7 @@ nav {
 			}
 		}
 	}
+
 	.no_recipes {
 		padding-top: 4rem;
 	}
@@ -315,7 +330,7 @@ nav {
 
 .add_recipe {
 	@include basic-style;
-
+	background-color: $third-color;
 	h2 {
 		@include subtitle-style;
 	}
@@ -406,7 +421,7 @@ nav {
 			align-items: center;
 			button {
 				margin: 1.5rem 0rem 2rem 0rem;
-				background-color: adjust-color($font-color-basic, $lightness: 20%);
+				background-color: adjust-color($button-color, $lightness: 20%);
 				width: 50vw;
 			}
 
@@ -435,7 +450,7 @@ nav {
 	.recipes_list {
 		margin-top: 2rem;
 		padding: 2rem;
-		border: 2px solid adjust-color($font-color-basic, $lightness: 20%);
+		border: 2px solid adjust-color($button-color, $lightness: 20%);
 		border-radius: 2rem;
 
 		li {
