@@ -8,7 +8,6 @@ import {
 	addDoc,
 	setDoc,
 } from "firebase/firestore";
-
 import { db } from "../firebase";
 import { UserAuth } from "../context/AuthContext";
 
@@ -22,6 +21,7 @@ const RecipesInCategory = ({
 	const { category } = useParams();
 	const [clickedRecipeInList, setClickedRecipeInList] = useState("");
 	const { user } = UserAuth();
+	//getting recipe to category in firebase
 	const getRecipe = async () => {
 		const q = query(
 			collection(db, "recipes"),
@@ -39,26 +39,6 @@ const RecipesInCategory = ({
 	useEffect(() => {
 		getRecipe();
 	}, [category]);
-
-	// ponizsza funkcja nie dziala
-	const getClickedRecipeInList = async () => {
-		const q = query(
-			collection(db, "recipes"),
-			where("name", "==", clickedRecipeInList)
-		);
-		console.log(clickedRecipeInList);
-		const querySnapshot = await getDocs(q);
-
-		if (!querySnapshot.empty) {
-			const recipe = querySnapshot.docs[0].data();
-			console.log(recipe);
-			setClickedRecipeInList(recipe.name);
-			const ingredientsList = recipe.ingredientsList;
-			setIngredientsList(ingredientsList);
-			setRecipeName(clickedRecipeInList);
-			return recipe;
-		}
-	};
 
 	useEffect(() => {
 		if (clickedRecipeInList) {
@@ -79,7 +59,6 @@ const RecipesInCategory = ({
 							return (
 								<li key={index} className="recipe_element">
 									<NavLink
-										onClick={() => getClickedRecipeInList(recipe.name)}
 										className="recipe"
 										end
 										to={`/recipes/${category}/${recipe.name}/`}>

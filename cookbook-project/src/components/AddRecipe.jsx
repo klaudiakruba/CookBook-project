@@ -8,6 +8,7 @@ import {
 	getDocs,
 	addDoc,
 	setDoc,
+	doc,
 } from "firebase/firestore";
 const AddRecipe = ({
 	recipeName,
@@ -24,16 +25,39 @@ const AddRecipe = ({
 	const [clickedSave, setClickedSave] = useState(false);
 
 	const handleAddRecipe = async (recipeName, category) => {
+		const recipeId = recipeName.trim();
 		const recipeToAdd = {
 			name: recipeName.trim(),
-			category: category.trim(),
+			category,
 			ingredientsList,
 		};
 		try {
-			await addDoc(collection(db, "recipes"), recipeToAdd);
+			await addDoc(
+				collection(db, "categories", category, recipeId),
+				recipeToAdd
+			);
 		} catch (error) {
-			console.error("Categories could't be added  - ", error);
+			console.error("Recipe could't be added  - ", error);
 		}
+	};
+	// ponizsza funkcja nie dziala wrzucci o do addrecipe i z return wyrzucic
+	const getClickedRecipeInList = async () => {
+		const q = query(
+			collection(db, "recipes"),
+			where("name", "==", clickedRecipeInList)
+		);
+		console.log(clickedRecipeInList);
+		const querySnapshot = await getDocs(q);
+
+		// if (!querySnapshot.empty) {
+		const recipe = querySnapshot.docs[0].data();
+		console.log(recipe);
+		setClickedRecipeInList(recipe.name);
+		const ingredientsList = recipe.ingredientsList;
+		setIngredientsList(ingredientsList);
+		setRecipeName(clickedRecipeInList);
+		return recipe;
+		// }
 	};
 	useEffect(() => {
 		if (clickedSave) {

@@ -26,6 +26,7 @@ const App = () => {
 	const [recipes, setRecipes] = useState([]);
 	const [recipeName, setRecipeName] = useState("");
 	const [ingredientsList, setIngredientsList] = useState([]);
+
 	return (
 		<HashRouter>
 			<AuthContextProvider>

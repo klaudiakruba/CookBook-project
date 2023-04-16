@@ -7,6 +7,7 @@ import {
 	getDocs,
 	addDoc,
 	setDoc,
+	doc,
 } from "firebase/firestore";
 
 import { db } from "../firebase";
@@ -14,41 +15,49 @@ import { db } from "../firebase";
 const LoggedView = ({ user }) => {
 	const [addCategory, setAddCategory] = useState("");
 	const [categories, setCategories] = useState([]);
+	const categoryRef = collection(db, "categories");
 
+	//adding categories to firebase
 	const addCategories = async () => {
-		//trim usuwa białe znaki
+		//trim removes white signs
 		if (addCategory.trim()) {
+			const categoryId = addCategory.trim();
 			const categoryToAdd = {
-				category: addCategory.trim(),
+				name: addCategory.trim(),
 			};
 			try {
-				await addDoc(collection(db, "categories"), categoryToAdd);
+				await setDoc(doc(categoryRef, categoryId), categoryToAdd);
 				setAddCategory("");
 				getCategories();
 			} catch (error) {
-				console.error("Categories could't be added  - ", error);
+				console.error("Category couldn't be added  - ", error);
 			}
 		}
 	};
+	//getting added categories from firebase
 	const getCategories = async () => {
-		const querySnapshot = await getDocs(collection(db, "categories"));
-		const tempCategories = [];
-		querySnapshot.forEach((doc) => {
-			const category = doc.data().category;
-			tempCategories.push(category);
-		});
-		setCategories(tempCategories);
+		try {
+			const querySnapshot = await getDocs(categoryRef);
+			const tempCategories = [];
+			querySnapshot.forEach((doc) => {
+				const category = doc.data().name;
+				tempCategories.push(category);
+			});
+			setCategories(tempCategories);
+		} catch (error) {
+			console.error("Category couldn't be downloaded  - ", error);
+		}
 	};
-
+	//hook to getting category depends on addCategory
 	useEffect(() => {
 		getCategories();
 	}, [addCategory]);
-
+	//function to run all component
 	const onSubmit = (e) => {
 		e.preventDefault();
 		addCategories({ category: addCategory });
 	};
-
+	//set up styles for clicked category
 	const getStyle =
 		() =>
 		({ isActive }) =>
