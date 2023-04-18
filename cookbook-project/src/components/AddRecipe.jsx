@@ -24,7 +24,7 @@ const AddRecipe = ({
 	const [quantity, setQuantity] = useState("");
 	const [clickedSave, setClickedSave] = useState(false);
 
-	const handleAddRecipe = async (recipeName, category) => {
+	const handleAddRecipe = async () => {
 		const recipeId = recipeName.trim();
 		const recipeToAdd = {
 			name: recipeName.trim(),

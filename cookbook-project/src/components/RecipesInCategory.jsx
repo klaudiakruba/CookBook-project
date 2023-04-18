@@ -21,30 +21,34 @@ const RecipesInCategory = ({
 	const { category } = useParams();
 	const [clickedRecipeInList, setClickedRecipeInList] = useState("");
 	const { user } = UserAuth();
-	//getting recipe to category in firebase
+	//getting recipe from category in firebase
 	const getRecipe = async () => {
-		const q = query(
-			collection(db, "recipes"),
-			where("category", "==", category)
-		);
-		const querySnapshot = await getDocs(q);
-		const tempRecipes = [];
-		querySnapshot.forEach((doc) => {
-			const recipe = doc.data();
-			tempRecipes.push(recipe);
-		});
-		setRecipes(tempRecipes);
+		try {
+			const q = query(collection(db, "categories", "category", category));
+
+			const querySnapshot = await getDocs(q);
+			const tempRecipes = [];
+
+			querySnapshot.forEach((doc) => {
+				const recipe = doc.data();
+				tempRecipes.push(recipe);
+			});
+			console.log(tempRecipes);
+			setRecipes(tempRecipes);
+		} catch (error) {
+			console.error("Problem with getting data from firebase", error);
+		}
 	};
 
 	useEffect(() => {
 		getRecipe();
 	}, [category]);
 
-	useEffect(() => {
-		if (clickedRecipeInList) {
-			getClickedRecipeInList();
-		}
-	}, [clickedRecipeInList, setIngredientsList, setRecipeName]);
+	// useEffect(() => {
+	// 	if (clickedRecipeInList) {
+	// 		getClickedRecipeInList();
+	// 	}
+	// }, [clickedRecipeInList, setIngredientsList, setRecipeName]);
 	return (
 		<div className="view_recipes">
 			<h2>Kategoria: {category} </h2>
@@ -67,6 +71,7 @@ const RecipesInCategory = ({
 								</li>
 							);
 						})}
+						<li>Przykładowy</li>
 					</ul>
 				) : (
 					<div className="no_recipes">Brak przepisów do wyświetlenia</div>
