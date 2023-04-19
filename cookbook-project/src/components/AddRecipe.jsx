@@ -37,7 +37,7 @@ const AddRecipe = ({
 				recipeToAdd
 			);
 		} catch (error) {
-			console.error("Recipe could't be added  - ", error);
+			console.error("Recipe couldn't be added  - ", error);
 		}
 	};
 	// ponizsza funkcja nie dziala wrzucci o do addrecipe i z return wyrzucic
