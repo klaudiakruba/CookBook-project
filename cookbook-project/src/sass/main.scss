@@ -31,10 +31,13 @@ nav {
 		font-size: 1.5rem;
 		color: $font-color-basic;
 		font-weight: bold;
+		display: flex;
+		flex-direction: row;
+		gap: 0.5rem;
 	}
 	.left_nav {
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		position: relative;
 		.name {
 			font-family: $font-title;
@@ -54,6 +57,9 @@ nav {
 			border: none;
 		}
 		.login_img {
+			font-size: 2rem;
+			color: $button-color;
+			padding-right: 0.5rem;
 		}
 	}
 }
