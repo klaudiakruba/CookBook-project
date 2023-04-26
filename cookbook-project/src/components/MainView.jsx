@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import cookbook from "../assets/cookbook.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
+import { Formik } from "formik";
+import * as EmailValidator from "email-validator";
+import * as Yup from "yup";
 
 const MainView = ({
 	email,
@@ -13,6 +16,7 @@ const MainView = ({
 }) => {
 	const navigate = useNavigate();
 	const { authFunctions } = UserAuth();
+	const [submitting, setSubmitting] = useState();
 
 	//Submit handle function
 	const handleSubmit = async (e) => {
@@ -37,6 +41,7 @@ const MainView = ({
 							Witaj
 							<br />w C<strong className="special_text">o</strong>okBook
 						</p>
+
 						<form onSubmit={handleSubmit}>
 							<div className="label_container">
 								<label className="log_text" name="email">

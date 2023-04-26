@@ -2,8 +2,8 @@ import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
-import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
+import { faCircleUser, faBookOpen } from "@fortawesome/free-solid-svg-icons";
+
 const Navigation = () => {
 	const navigate = useNavigate();
 	const { user, authFunctions } = UserAuth();
